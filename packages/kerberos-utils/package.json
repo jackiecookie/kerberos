@@ -1,5 +1,5 @@
 {
-    "name": "utils",
+    "name": "kerberos-utils",
     "version": "0.1.0",
     "main": "index.ts",
     "author": "潘迪海 <2711002357@qq.com>",
@@ -8,5 +8,5 @@
         "path-to-regexp": "^6.1.0",
         "redux": "^4.0.5"
     },
-    "gitHead": "7e6574915e287ace728698d75719741c477811f8"
+    "gitHead": "328a47e5c8020fc7e09fb5bce58087b44235f042"
 }
