@@ -1,5 +1,5 @@
 {
-    "name": "kerberos-app",
+    "name": "@kerberos/app",
     "version": "0.1.0",
     "main": "index.ts",
     "author": "潘迪海 <2711002357@qq.com>",
@@ -8,6 +8,6 @@
         "react": "^16.12.0",
         "react-dom": "^16.12.0"
     },
-    "gitHead": "a819d771cc9311ff39aaae155078f4340dff7751",
+    "gitHead": "428a240ba8ac0e76094807470633c40a88c8a785",
     "repository": "https://github.com/jackiecookie/kerberos/tree/master/packages/kerberos-app"
 }
