@@ -7,5 +7,6 @@
     "dependencies": {
         "path-to-regexp": "^6.1.0",
         "redux": "^4.0.5"
-    }
+    },
+    "gitHead": "98ff19e86a22c78466fd95b1578f8454343269dc"
 }

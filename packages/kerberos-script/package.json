@@ -70,5 +70,6 @@
   "devDependencies": {
     "react-redux": "^7.1.3",
     "redux": "^4.0.5"
-  }
+  },
+  "gitHead": "98ff19e86a22c78466fd95b1578f8454343269dc"
 }
