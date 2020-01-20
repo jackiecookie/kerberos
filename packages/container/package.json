@@ -1,0 +1,13 @@
+{
+    "name": "container",
+    "version": "1.0.0",
+    "main": "index.ts",
+    "author": "潘迪海 <2711002357@qq.com>",
+    "license": "MIT",
+    "devDependencies": {},
+    "dependencies": {
+        "axios": "^0.19.1",
+        "react": "^16.12.0",
+        "url-parse": "^1.4.7"
+    }
+}

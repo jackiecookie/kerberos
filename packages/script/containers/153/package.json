@@ -1,0 +1,17 @@
+{
+  "name": "153",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": ""
+  },
+  "code": "153",
+  "dependencies": {
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "react-redux": "7.1.3",
+    "react-router": "5.1.2",
+    "webpack": "4.41.5"
+  },
+  "host":"localhost"
+}

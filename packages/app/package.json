@@ -1,0 +1,12 @@
+{
+    "name": "app",
+    "version": "1.0.0",
+    "main": "index.ts",
+    "author": "潘迪海 <2711002357@qq.com>",
+    "license": "MIT",
+    "devDependencies": {},
+    "dependencies": {
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0"
+    }
+}
