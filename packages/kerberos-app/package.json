@@ -8,5 +8,9 @@
         "react": "^16.12.0",
         "react-dom": "^16.12.0"
     },
-    "gitHead": "328a47e5c8020fc7e09fb5bce58087b44235f042"
+    "gitHead": "a819d771cc9311ff39aaae155078f4340dff7751",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jackiecookie/kerberos.git"
+    }
 }
