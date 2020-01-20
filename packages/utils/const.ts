@@ -1,0 +1,3 @@
+export const USER = "_KERBEROS_USER"
+
+export const USERMAYCHANGED = "_KERBEROS_USER_MAY_CHANGED"
