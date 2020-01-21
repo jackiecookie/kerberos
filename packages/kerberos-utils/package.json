@@ -1,24 +1,32 @@
 {
     "name": "kerberos-utils",
-    "version": "0.1.1",
-    "main": "index.ts",
+    "version": "0.1.2",
+    "main": "dist/index",
+    "types": "dist/index",
+    "files": [
+        "dist"
+    ],
     "author": "潘迪海 <2711002357@qq.com>",
     "license": "MIT",
     "dependencies": {
-        "@testing-library/jest-dom": "^5.0.0",
-        "@types/jest": "^24.9.0",
-        "jest": "^24.9.0",
         "path-to-regexp": "^6.1.0",
-        "redux": "^4.0.5",
-        "ts-jest": "^24.3.0",
-        "typescript": "^3.7.5"
+        "redux": "^4.0.5"
     },
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "build": "npm run clean && npm run compile",
+        "clean": "rm -rf ./dist && rm -rf tsconfig.build.tsbuildinfo",
+        "compile": "tsc -b tsconfig.build.json",
+        "prepublishOnly": "npm run build"
     },
     "gitHead": "69e69c5bbd30cb8ce80fe3eaadf523825950d0dd",
     "devDependencies": {
+        "@testing-library/jest-dom": "^5.0.0",
+        "@types/jest": "^24.9.0",
+        "jest": "^24.9.0",
         "@types/react": "^16.9.17",
-        "react": "^16.12.0"
+        "react": "^16.12.0",
+        "ts-jest": "^24.3.0",
+        "typescript": "^3.7.5"
     }
 }
