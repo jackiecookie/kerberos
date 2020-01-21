@@ -165,6 +165,10 @@
         "version": "01acd614eec35a895ac2feaa927f65d1dd6038cb310f4a93d3ec459b85ea6ea3",
         "signature": "b12f27d8931f5ab48763b657bb1d1457232656d91ae8f75e80473cdfc85ac591"
       },
+      "../index.ts": {
+        "version": "2b82c651f16d5f5a5ae4086a8b42b9b79100f1db11edc2ac3bbc0f2253719acc",
+        "signature": "19260025f4a11e3ca489cdc08617c18021fbb6d95a8ede5022e02e299d190531"
+      },
       "../node_modules/@babel/types/lib/index.d.ts": {
         "version": "b05f0003bcf151be87491c83a4ba37b561798f1282b92cedb3a4e75a0224eb85",
         "signature": "b05f0003bcf151be87491c83a4ba37b561798f1282b92cedb3a4e75a0224eb85"
@@ -699,6 +703,19 @@
       ],
       "../matchhelp.ts": [
         "../node_modules/path-to-regexp/dist/index.d.ts",
+        "../../../node_modules/@types/node/fs.d.ts",
+        "../../../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../../../node_modules/@types/node/util.d.ts",
+        "../../../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../index.ts": [
+        "../applifecycle.ts",
+        "../cache.ts",
+        "../const.ts",
+        "../handelreduxstore.ts",
+        "../handleassets.ts",
+        "../matchhelp.ts",
+        "../message.ts",
         "../../../node_modules/@types/node/fs.d.ts",
         "../../../node_modules/@types/node/ts3.2/fs.d.ts",
         "../../../node_modules/@types/node/util.d.ts",
@@ -1418,6 +1435,15 @@
         "../../../node_modules/@types/node/util.d.ts",
         "../../../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../index.ts": [
+        "../applifecycle.ts",
+        "../cache.ts",
+        "../const.ts",
+        "../handelreduxstore.ts",
+        "../handleassets.ts",
+        "../matchhelp.ts",
+        "../message.ts"
+      ],
       "../handelreduxstore.ts": [
         "../node_modules/redux/index.d.ts"
       ],
@@ -1979,6 +2005,7 @@
       "../handleassets.ts",
       "../node_modules/path-to-regexp/dist/index.d.ts",
       "../matchhelp.ts",
+      "../index.ts",
       "../node_modules/@babel/types/lib/index.d.ts",
       "../node_modules/@types/babel__generator/index.d.ts",
       "../node_modules/@types/babel__traverse/index.d.ts",

@@ -2,9 +2,9 @@
   "compilerOptions": {
     "composite": true,
     "declaration": true,
-    "outDir": "./utils",
+    "outDir": "./src",
     "module": "commonjs",
     "target": "es5"
   },
-  "exclude": ["node_modules", "utils", "tests"]
+  "exclude": ["node_modules", "src", "tests"]
 }
