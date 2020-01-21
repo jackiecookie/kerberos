@@ -14,7 +14,7 @@ function Noop() {
   return <div>Noop</div>;
 }
 
-isInContainer.mockReturnValueOnce(false).mockReturnValueOnce(true);
+(isInContainer as jest.Mock).mockReturnValueOnce(false).mockReturnValueOnce(true);
 
 describe("test appRegister", () => {
   test("render component in root provide when not in container", () => {
