@@ -1,6 +1,6 @@
 {
     "name": "kerberos-utils",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "main": "index.ts",
     "author": "潘迪海 <2711002357@qq.com>",
     "license": "MIT",
@@ -16,7 +16,7 @@
     "scripts": {
         "test": "jest"
     },
-    "gitHead": "4683315338a37ee04bf52124401e73387f75095a",
+    "gitHead": "69e69c5bbd30cb8ce80fe3eaadf523825950d0dd",
     "devDependencies": {
         "@types/react": "^16.9.17",
         "react": "^16.12.0"
