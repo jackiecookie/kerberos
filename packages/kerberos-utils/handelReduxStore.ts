@@ -5,8 +5,8 @@ import { setCache, getCache } from "./cache";
 const storeKey = "_KERBEROS_STORES";
 let dispatching = false;
 
-function findStore(appInstance: JSX.Element): null | Store {
-  if (!appInstance||typeof(appInstance.props)!=='object' ) {
+function _findStore(appInstance: JSX.Element): null | Store {
+  if (!appInstance || typeof appInstance.props !== "object") {
     return null;
   }
   let { children, store } = appInstance.props;
@@ -14,30 +14,32 @@ function findStore(appInstance: JSX.Element): null | Store {
     return store;
   }
   if (children && typeof children === "object") {
-    return findStore(children);
+    return _findStore(children);
   } else {
     return null;
   }
 }
 
 function setStoreIntoCache(store: Store) {
-  let stores = getStoreFromCache();
+  let stores = _getStoreFromCache();
   stores.push(store);
   setCache(storeKey, stores);
 }
 
-function getStoreFromCache(): Store[] {
+function _getStoreFromCache(): Store[] {
   return getCache(storeKey) || [];
 }
 
-function dispatchStore(user) {
+function dispatchStore(user, store) {
   if (dispatching) {
     return;
   }
   dispatching = true;
-  let stores = getStoreFromCache();
-  stores.forEach(store => {
-    storeDispatch(store, user);
+  let stores = _getStoreFromCache();
+  stores.forEach(targeStore => {
+    if (targeStore != store) {
+      storeDispatch(targeStore, user);
+    }
   });
   dispatching = false;
 }
@@ -52,7 +54,7 @@ function storeDispatch(store, user) {
 }
 
 function initUserState(store: Store) {
-  let stores = getStoreFromCache();
+  let stores = _getStoreFromCache();
   let user = null;
   if (stores) {
     user = stores[0].getState()[USER];
@@ -61,7 +63,7 @@ function initUserState(store: Store) {
 }
 
 function handelReduxStore(appInstance: JSX.Element, init: boolean = false) {
-  let store = findStore(appInstance);
+  let store = _findStore(appInstance);
   if (store) {
     let state = store.getState();
     if (state && state[USER]) {
@@ -69,11 +71,11 @@ function handelReduxStore(appInstance: JSX.Element, init: boolean = false) {
         initUserState(store);
       }
       store.subscribe(() => {
-        dispatchStore(store.getState[USER]);
+        dispatchStore(store.getState()[USER], store);
       });
       setStoreIntoCache(store);
     }
   }
 }
 
-export default handelReduxStore;
+export { handelReduxStore, _findStore, _getStoreFromCache };

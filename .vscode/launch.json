@@ -9,15 +9,28 @@
       "request": "launch",
       "name": "server-start",
       "program": "${workspaceFolder}/packages/server/bin/kerberos-server-start.js",
-      "cwd": "${workspaceFolder}/packages/server",
+      "cwd": "${workspaceFolder}/packages/server"
     },
     {
-        "type": "node",
-        "request": "launch",
-        "name": "server-build",
-        "program": "${workspaceFolder}/packages/server/bin/kerberos-server-build.js",
-        "cwd": "${workspaceFolder}/packages/server",
-        "stopOnEntry": true,
+      "type": "node",
+      "request": "launch",
+      "name": "server-build",
+      "program": "${workspaceFolder}/packages/server/bin/kerberos-server-build.js",
+      "cwd": "${workspaceFolder}/packages/server",
+      "stopOnEntry": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest All",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": ["--runInBand"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "windows": {
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
       }
+    }
   ]
 }

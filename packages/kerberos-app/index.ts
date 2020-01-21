@@ -2,7 +2,7 @@ import { appRegister as appLifeCycleAppRegister } from "../utils/appLifeCycle";
 import React, { Component, ReactElement } from "react";
 import ReactDOM from "react-dom";
 import { isInContainer } from "../utils/handleAssets";
-import handelReduxStore from "../utils/handelReduxStore";
+import {handelReduxStore} from "../utils/handelReduxStore";
 
 
 function appRegister(

@@ -1,0 +1,35 @@
+0 silly argv { _: [ 'publish' ],
+0 silly argv   yes: true,
+0 silly argv   y: true,
+0 silly argv   composed: 'publish',
+0 silly argv   lernaVersion: '3.20.2',
+0 silly argv   '$0':
+0 silly argv    '/Users/pandihai/.config/yarn/global/node_modules/.bin/lerna',
+0 silly argv   bump: 'from-package' }
+1 notice cli v3.20.2
+2 verbose rootPath /Users/pandihai/code/kerberos
+3 verbose session 03a7d25c83919e35
+4 verbose user-agent lerna/3.20.2/node@v10.16.3+x64 (darwin)
+5 verbose git-describe undefined => "v0.1.0-7-g4683315"
+6 silly git-describe parsed => {"lastTagName":"v0.1.0","lastVersion":"v0.1.0","refCount":"7","sha":"4683315","isDirty":false}
+7 silly getUnpublishedPackages
+8 warn Unable to determine published version, assuming "@kerberos/utils" unpublished.
+9 warn Unable to determine published version, assuming "@kerberos/script" unpublished.
+10 warn Unable to determine published version, assuming "@kerberos/container" unpublished.
+11 warn Unable to determine published version, assuming "@kerberos/app" unpublished.
+12 info auto-confirmed
+13 info publish Publishing packages to npm...
+14 info Verifying npm credentials
+15 verbose Retrieving npm user profile
+16 http fetch GET 200 https://registry.npmjs.org/-/npm/v1/user 321ms
+17 silly npm profile get received {"name":"wspandihai","created":"2020-01-20T09:27:10.507Z","updated":"2020-01-20T09:27:10.507Z","fullname":"wspandihai","homepage":"","twitter":"","github":"wspandihai"}
+18 silly get npm username received {"username":"wspandihai","name":"wspandihai","created":"2020-01-20T09:27:10.507Z","updated":"2020-01-20T09:27:10.507Z","fullname":"wspandihai","homepage":"","twitter":"","github":"wspandihai"}
+19 silly verifyNpmPackageAccess
+20 http fetch GET 200 https://registry.npmjs.org/-/org/wspandihai/package?format=cli 599ms
+21 info Checking two-factor auth mode
+22 verbose Retrieving npm user profile
+23 http fetch GET 200 https://registry.npmjs.org/-/npm/v1/user 291ms
+24 silly npm profile get received {"name":"wspandihai","created":"2020-01-20T09:27:10.507Z","updated":"2020-01-20T09:27:10.507Z","fullname":"wspandihai","homepage":"","twitter":"","github":"wspandihai"}
+25 silly 2FA undefined
+26 error TypeError: Cannot read property 'mode' of undefined
+26 error     at success (/Users/pandihai/code/kerberos/node_modules/@lerna/publish/lib/get-two-factor-auth-required.js:27:23)

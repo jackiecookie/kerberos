@@ -4,7 +4,12 @@
   "main": "index.js",
   "author": "潘迪海 <2711002357@qq.com>",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.3.0",
+    "typescript": "^3.7.5"
+  },
   "dependencies": {
     "husky": "^4.0.10",
     "lerna": "^3.20.2",
@@ -12,7 +17,6 @@
     "prettier": "^1.19.1"
   },
   "scripts": {
-    "publish": "lerna publish",
-    "bootstrap": "lerna bootstrap"
+    "test": "jest"
   }
 }

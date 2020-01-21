@@ -8,7 +8,6 @@ const IS_CSS_REGEX = /\.css(\?((?!\.js$).)+)?$/;
 
 const getCacheRoot = () => getCache("root");
 
-const winFetch = window.fetch;
 const COMMENT_REGEX = /<!--.*?-->/g;
 const SCRIPT_REGEX = /<script\b[^>]*>([^<]*)<\/script>/gi;
 const SCRIPT_SRC_REGEX = /<script\b[^>]*src=['"]?([^'"]*)['"]?\b[^>]*>/gi;

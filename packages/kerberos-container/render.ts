@@ -1,6 +1,6 @@
 import React, { Component, ReactElement } from "react";
 import ReactDOM from "react-dom";
-import handelReduxStore from "../utils/handelReduxStore";
+import {handelReduxStore} from "../utils/handelReduxStore";
 
 function render(
   app: Component | ReactElement | any,
