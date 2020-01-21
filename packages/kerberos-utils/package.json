@@ -1,10 +1,10 @@
 {
     "name": "kerberos-utils",
-    "version": "0.1.2",
-    "main": "dist/index",
-    "types": "dist/index",
+    "version": "0.1.3",
+    "main": "utils/index",
+    "types": "utils/index",
     "files": [
-        "dist"
+        "utils"
     ],
     "author": "潘迪海 <2711002357@qq.com>",
     "license": "MIT",
@@ -15,7 +15,7 @@
     "scripts": {
         "test": "jest",
         "build": "npm run clean && npm run compile",
-        "clean": "rm -rf ./dist && rm -rf tsconfig.build.tsbuildinfo",
+        "clean": "rm -rf ./utils && rm -rf tsconfig.build.tsbuildinfo",
         "compile": "tsc -b tsconfig.build.json",
         "prepublishOnly": "npm run build"
     },

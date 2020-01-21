@@ -17,6 +17,8 @@
     "prettier": "^1.19.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build":"lerna run build",
+    "pub": "yarn build && lerna publish from-package --yes"
   }
 }
