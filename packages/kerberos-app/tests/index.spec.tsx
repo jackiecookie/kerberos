@@ -3,6 +3,7 @@ jest.mock("kerberos-utils/handleAssets");
 jest.mock("react-dom");
 
 import { appRegister } from "../index";
+
 import { appRegister as appLifeCycleAppRegister } from "kerberos-utils/appLifeCycle";
 import { isInContainer } from "kerberos-utils/handleAssets";
 import ReactDOM from "react-dom";
