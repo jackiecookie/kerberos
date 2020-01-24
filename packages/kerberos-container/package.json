@@ -1,6 +1,6 @@
 {
     "name": "kerberos-container",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "main": "src/index.js",
     "types": "src/index",
     "author": "潘迪海 <2711002357@qq.com>",
