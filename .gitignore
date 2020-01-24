@@ -19,3 +19,5 @@ packages/server/route.json
 packages/server/apps/*
 packages/server/containers/*
 dist
+packages/kerberos-script/apps
+packages/kerberos-script/containers
