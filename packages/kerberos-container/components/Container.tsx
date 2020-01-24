@@ -4,7 +4,7 @@ import RouteControl, { RouteChangeHocksProps } from "./RouteControl";
 
 import Route from "./Route";
 
-import { recordAssets,setContainerFlag } from "utils/handleAssets";
+import { recordAssets,setContainerFlag } from "kerberos-utils";
 
 import ProLayout from '@ant-design/pro-layout';
 

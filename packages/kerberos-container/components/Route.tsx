@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { AppConfig } from "./Container";
-// import { setCache, getCache } from "../../utils/cache";
-import { appendAssets, emptyAssets } from "../../utils/handleAssets";
 import { getAssetsUrlByCode } from "../api/index";
-import { callAppRegister } from "../../utils/appLifeCycle";
+import { callAppRegister,appendAssets, emptyAssets } from "kerberos-utils";
 
 export interface RouteProps extends AppConfig {}
 interface RouteState {
@@ -22,7 +20,6 @@ export default class Route extends Component<RouteProps, RouteState> {
   }
 
   componentWillUnmount() {
-   // this.refBase.innerHTML = ''
     emptyAssets();
   }
 
@@ -37,8 +34,15 @@ export default class Route extends Component<RouteProps, RouteState> {
       assetsUrls = res.success ? res.data : assetsUrls;
     }
     this.setState({ assetsUrls });
-    await appendAssets(assetsUrls);
-    callAppRegister(this.refBase);
+    try{
+      await appendAssets(assetsUrls);
+      callAppRegister(this.refBase);
+    }
+    catch(err){
+      console.error(err)
+    }
+  
+  
   }
  
   render() {

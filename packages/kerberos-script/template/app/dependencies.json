@@ -5,6 +5,7 @@
         "react-router",
         "redux",
         "react-redux",
-        "antd"
+        "antd",
+        "kerberos-app"
     ]
 }

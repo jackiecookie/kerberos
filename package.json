@@ -7,6 +7,8 @@
   "devDependencies": {
     "@types/jest": "^24.9.0",
     "jest": "^24.9.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "ts-jest": "^24.3.0",
     "typescript": "^3.7.5"
   },
@@ -18,7 +20,7 @@
   },
   "scripts": {
     "test": "jest",
-    "build":"lerna run build",
+    "build": "lerna run build",
     "pub": "yarn build && lerna publish from-package --yes"
   }
 }

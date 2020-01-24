@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "../../packages/container";
+import { Container } from "kerberos-container";
 
 
 export default function App() {

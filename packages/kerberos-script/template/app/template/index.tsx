@@ -2,6 +2,6 @@ import React from "react";
 
 import App from "./App";
 
-import { appRegister } from "../../packages/app";
+import { appRegister } from "kerberos-app";
 
 appRegister(App)

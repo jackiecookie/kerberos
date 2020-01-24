@@ -23,7 +23,7 @@ function compilePath(path, options) {
 }
 
 
-export default function matchPath(pathname: string, options: any = {}) {
+export function matchPath(pathname: string, options: any = {}) {
   if (typeof options === 'string') options = { path: options };
 
   const { path, exact = false, strict = false, sensitive = false } = options;

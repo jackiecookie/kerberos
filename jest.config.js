@@ -1,14 +1,5 @@
 module.exports = {
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   transformIgnorePatterns:[],
-  globals: {
-    window: {},
-    CustomEvent:function(name,data){
-      return {
-        name,
-        data
-      }
-    }
-  }
 };

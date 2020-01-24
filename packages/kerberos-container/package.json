@@ -5,11 +5,18 @@
     "author": "潘迪海 <2711002357@qq.com>",
     "license": "MIT",
     "dependencies": {
+        "@ant-design/pro-layout": "^4.10.10",
         "@types/react": "^16.9.17",
         "@types/react-dom": "^16.9.4",
         "axios": "^0.19.1",
+        "kerberos-utils": "^0.1.4",
         "react": "^16.12.0",
         "url-parse": "^1.4.7"
     },
-    "gitHead": "69e69c5bbd30cb8ce80fe3eaadf523825950d0dd"
+    "gitHead": "69e69c5bbd30cb8ce80fe3eaadf523825950d0dd",
+    "devDependencies": {
+        "@testing-library/react": "^9.4.0",
+        "@types/jsdom": "^12.2.4",
+        "jsdom": "^16.0.1"
+    }
 }

@@ -1,34 +1,43 @@
-jest.mock("kerberos-utils/appLifeCycle");
-jest.mock("kerberos-utils/handleAssets");
+jest.mock("kerberos-utils");
 jest.mock("react-dom");
 
 import { appRegister } from "../index";
 
-import { appRegister as appLifeCycleAppRegister } from "kerberos-utils/appLifeCycle";
-import { isInContainer } from "kerberos-utils/handleAssets";
+import {
+  appRegister as appLifeCycleAppRegister,
+  isInContainer
+} from "kerberos-utils";
 import ReactDOM from "react-dom";
 import React from "react";
-
-ReactDOM.render = jest.fn();
 
 function Noop() {
   return <div>Noop</div>;
 }
 
-(isInContainer as jest.Mock).mockReturnValueOnce(false).mockReturnValueOnce(true);
-
 describe("test appRegister", () => {
+  document.getElementById = jest.fn(elementId => {
+    return elementId as any;
+  });
+  ReactDOM.render = jest.fn();
   test("render component in root provide when not in container", () => {
+    (isInContainer as jest.Mock).mockReturnValueOnce(false);
     // not in container
     let rootId = "rootId";
     appRegister(Noop, rootId);
-    expect(ReactDOM.render).toBeCalledWith(Noop(),rootId)
+    expect(ReactDOM.render).toBeCalledTimes(1);
+    expect(ReactDOM.render).toBeCalledWith(Noop(), rootId);
   });
 
   test("register callback into lifeCycle when in container", () => {
+    (isInContainer as jest.Mock).mockReturnValueOnce(true);
     // in container
     appRegister(Noop);
     expect(appLifeCycleAppRegister).toBeCalledTimes(1);
-    //appLifeCycleAppRegister.mock.calls
+    let callback = (appLifeCycleAppRegister as jest.Mock).mock.calls[0][0];
+    let containerRootId = "containerRootId";
+    // call callback manual
+    callback({ detail: { data: containerRootId } });
+    expect(ReactDOM.render).toBeCalledTimes(2);
+    expect(ReactDOM.render).toBeCalledWith(Noop(), containerRootId);
   });
 });

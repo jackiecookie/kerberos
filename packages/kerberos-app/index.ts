@@ -1,9 +1,10 @@
-import { appRegister as appLifeCycleAppRegister } from "kerberos-utils/appLifeCycle";
 import React, { Component, ReactElement } from "react";
 import ReactDOM from "react-dom";
-import { isInContainer } from "kerberos-utils/handleAssets";
-import {handelReduxStore} from "kerberos-utils/handelReduxStore";
-
+import {
+  isInContainer,
+  handelReduxStore,
+  appRegister as appLifeCycleAppRegister
+} from "kerberos-utils";
 
 function appRegister(
   app: Component | ReactElement | any,
@@ -13,7 +14,7 @@ function appRegister(
     appLifeCycleAppRegister(function(evt: CustomEvent) {
       let appInstance = app();
       let root = evt.detail.data;
-      handelReduxStore(appInstance,true);
+      handelReduxStore(appInstance, true);
       ReactDOM.render(appInstance, root);
     });
   } else {

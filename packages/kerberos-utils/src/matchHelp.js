@@ -52,4 +52,4 @@ function matchPath(pathname, options) {
         };
     }, null);
 }
-exports.default = matchPath;
+exports.matchPath = matchPath;

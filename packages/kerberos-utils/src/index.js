@@ -10,3 +10,4 @@ __export(require("./handelReduxStore"));
 __export(require("./handleAssets"));
 __export(require("./matchHelp"));
 __export(require("./message"));
+__export(require("./matchHelp"));

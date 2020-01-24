@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Route, { RouteProps } from "./Route";
 import urlParse from "url-parse";
 
-import matchPath from "../../utils/matchHelp";
+import { matchPath } from "kerberos-utils";
 
 export interface RouteChangeHocksProps {
   onAppLeave?: () => void;
@@ -32,6 +32,10 @@ export default class RouteControl extends Component<RouteControlProps, State> {
     this.hijackHistory();
   }
 
+  componentWillUnmount(){
+    this.unhijackHistory();
+  }
+
   hijackHistory = (): void => {
     window.history.pushState = (
       state: any,
@@ -56,16 +60,22 @@ export default class RouteControl extends Component<RouteControlProps, State> {
     window.addEventListener("popstate", this.handlePopState, false);
   };
 
+  unhijackHistory = ():void=>{
+    window.history.pushState = this.originalPush;
+    window.history.replaceState = this.originalReplace;
+    window.removeEventListener("popstate",this.handlePopState, false)
+  }
+
   //后退
   handlePopState = (state): void => {
     const url = location.href;
-    this.handleStateChange(state,url,'popstate')
+    this.handleStateChange(state, url, "popstate");
   };
 
   handleStateChange(state: string, url: string, type: string): void {
     this.setState({
       url
-    })
+    });
   }
 
   render() {
@@ -74,7 +84,6 @@ export default class RouteControl extends Component<RouteControlProps, State> {
     const { pathname, query } = urlParse(url, true);
     let currentRoute = null;
     let matchRes = null;
-
     React.Children.forEach(children as Route[], child => {
       if (currentRoute == null && React.isValidElement(child)) {
         let { path } = child.props as RouteProps;
