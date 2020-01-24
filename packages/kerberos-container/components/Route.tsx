@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { AppConfig } from "./Container";
 import { getAssetsUrlByCode } from "../api/index";
-import { callAppRegister,appendAssets, emptyAssets } from "kerberos-utils";
+import { callAppRegister, appendAssets, emptyAssets } from "kerberos-utils";
 
 export interface RouteProps extends AppConfig {}
 interface RouteState {
@@ -9,11 +9,8 @@ interface RouteState {
 }
 
 export default class Route extends Component<RouteProps, RouteState> {
-  state = {
-    assetsUrls: null
-  };
 
-  private refBase: HTMLDivElement = null;
+  private refBase: HTMLDivElement;
 
   async componentDidMount() {
     await this.renderApp();
@@ -27,28 +24,27 @@ export default class Route extends Component<RouteProps, RouteState> {
     let { code, url } = this.props;
     let { assetsUrls } = this.state;
     if (url && url.length > 0 && !assetsUrls) {
-      assetsUrls = url;
+      assetsUrls = url as string[];
     }
     if (!assetsUrls) {
       let res = await getAssetsUrlByCode(code);
-      assetsUrls = res.success ? res.data : assetsUrls;
+      assetsUrls = res.success ? (res.data as string[]) : assetsUrls;
     }
-    this.setState({ assetsUrls });
-    try{
-      await appendAssets(assetsUrls);
-      callAppRegister(this.refBase);
+    if (assetsUrls) {
+      this.setState({ assetsUrls: assetsUrls as string[] });
+      try {
+        await appendAssets(assetsUrls as string[]);
+        callAppRegister(this.refBase);
+      } catch (err) {
+        console.error(err);
+      }
     }
-    catch(err){
-      console.error(err)
-    }
-  
-  
   }
- 
+
   render() {
     return (
       <div
-        ref={element => {
+        ref={(element: HTMLDivElement) => {
           this.refBase = element;
         }}
       ></div>

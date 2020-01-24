@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, ReactElement } from "react";
 import Route, { RouteProps } from "./Route";
 import urlParse from "url-parse";
 
@@ -32,7 +32,7 @@ export default class RouteControl extends Component<RouteControlProps, State> {
     this.hijackHistory();
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.unhijackHistory();
   }
 
@@ -40,39 +40,39 @@ export default class RouteControl extends Component<RouteControlProps, State> {
     window.history.pushState = (
       state: any,
       title: string,
-      url?: string,
+      url: string,
       ...rest
     ) => {
       this.originalPush.apply(window.history, [state, title, url, ...rest]);
-      this.handleStateChange(state, url, "pushState");
+      this.handleStateChange(url);
     };
 
     window.history.replaceState = (
       state: any,
       title: string,
-      url?: string,
+      url: string,
       ...rest
     ) => {
       this.originalReplace.apply(window.history, [state, title, url, ...rest]);
-      this.handleStateChange(state, url, "replaceState");
+      this.handleStateChange(url);
     };
 
     window.addEventListener("popstate", this.handlePopState, false);
   };
 
-  unhijackHistory = ():void=>{
+  unhijackHistory = (): void => {
     window.history.pushState = this.originalPush;
     window.history.replaceState = this.originalReplace;
-    window.removeEventListener("popstate",this.handlePopState, false)
-  }
-
-  //后退
-  handlePopState = (state): void => {
-    const url = location.href;
-    this.handleStateChange(state, url, "popstate");
+    window.removeEventListener("popstate", this.handlePopState, false);
   };
 
-  handleStateChange(state: string, url: string, type: string): void {
+  //后退
+  handlePopState = (): void => {
+    const url = location.href;
+    this.handleStateChange(url);
+  };
+
+  handleStateChange(url: string): void {
     this.setState({
       url
     });
@@ -81,8 +81,8 @@ export default class RouteControl extends Component<RouteControlProps, State> {
   render() {
     let { children } = this.props;
     let { url } = this.state;
-    const { pathname, query } = urlParse(url, true);
-    let currentRoute = null;
+    const { pathname } = urlParse(url, true);
+    let currentRoute = undefined as unknown;
     let matchRes = null;
     React.Children.forEach(children as Route[], child => {
       if (currentRoute == null && React.isValidElement(child)) {
@@ -93,7 +93,7 @@ export default class RouteControl extends Component<RouteControlProps, State> {
     });
 
     if (currentRoute) {
-      return <div>{React.cloneElement(currentRoute)}</div>;
+      return <div>{React.cloneElement(currentRoute as ReactElement)}</div>;
     } else {
       return <div>404</div>;
     }

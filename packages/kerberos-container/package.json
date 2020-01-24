@@ -1,13 +1,15 @@
 {
     "name": "kerberos-container",
     "version": "0.1.1",
-    "main": "index.ts",
+    "main": "src/index.js",
+    "types": "src/index",
     "author": "潘迪海 <2711002357@qq.com>",
     "license": "MIT",
     "dependencies": {
         "@ant-design/pro-layout": "^4.10.10",
         "@types/react": "^16.9.17",
         "@types/react-dom": "^16.9.4",
+        "@types/url-parse": "^1.4.3",
         "axios": "^0.19.1",
         "kerberos-utils": "^0.1.4",
         "react": "^16.12.0",
@@ -18,5 +20,12 @@
         "@testing-library/react": "^9.4.0",
         "@types/jsdom": "^12.2.4",
         "jsdom": "^16.0.1"
+    },
+    "scripts": {
+        "test": "jest",
+        "build": "npm run clean && npm run compile",
+        "clean": "rm -rf ./src && rm -rf tsconfig.build.tsbuildinfo",
+        "compile": "tsc -b tsconfig.build.json",
+        "prepublishOnly": "npm run build"
     }
 }
