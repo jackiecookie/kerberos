@@ -1,6 +1,6 @@
 {
-  "name": "kerberos-script",
-  "version": "0.1.4",
+  "name": "kerberos",
+  "version": "0.1.5",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
@@ -66,7 +66,7 @@
   "scripts": {
     "init:node": ""
   },
-  "bin": "./bin/kerberos-server.js",
+  "bin": "./bin/kerberos.js",
   "devDependencies": {
     "kerberos-app": "^0.1.1",
     "kerberos-container": "^0.1.1",
