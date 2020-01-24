@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import React from 'react';
 import { Table, Divider, Tag } from 'antd';
 import 'antd/dist/antd.css';
