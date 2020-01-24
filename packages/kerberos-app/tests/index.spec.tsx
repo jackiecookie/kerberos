@@ -1,3 +1,4 @@
+
 jest.mock("kerberos-utils");
 jest.mock("react-dom");
 
@@ -18,6 +19,7 @@ describe("test appRegister", () => {
   document.getElementById = jest.fn(elementId => {
     return elementId as any;
   });
+   //@ts-ignore
   ReactDOM.render = jest.fn();
   test("render component in root provide when not in container", () => {
     (isInContainer as jest.Mock).mockReturnValueOnce(false);

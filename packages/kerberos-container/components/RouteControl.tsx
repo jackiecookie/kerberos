@@ -83,11 +83,13 @@ export default class RouteControl extends Component<RouteControlProps, State> {
     let { url } = this.state;
     const { pathname } = urlParse(url, true);
     let currentRoute = undefined as unknown;
-    let matchRes = null;
+    let matchRes = null as unknown;
     React.Children.forEach(children as Route[], child => {
       if (currentRoute == null && React.isValidElement(child)) {
         let { path } = child.props as RouteProps;
-        matchRes = path ? matchPath(pathname, { ...child.props }) : null;
+        if(path){
+          matchRes = matchPath(pathname, { ...child.props })
+        }
         if (matchRes) currentRoute = child;
       }
     });

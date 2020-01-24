@@ -68,6 +68,9 @@
   },
   "bin": "./bin/kerberos-server.js",
   "devDependencies": {
+    "kerberos-app": "^0.1.1",
+    "kerberos-container": "^0.1.1",
+    "kerberos-utils": "^0.1.4",
     "react-redux": "^7.1.3",
     "redux": "^4.0.5"
   },

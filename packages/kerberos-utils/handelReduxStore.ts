@@ -65,13 +65,14 @@ function initUserState(store: Store) {
 function handelReduxStore(appInstance: JSX.Element, init: boolean = false) {
   let store = _findStore(appInstance);
   if (store) {
+    store as Store
     let state = store.getState();
     if (state && state[USER]) {
       if (init) {
         initUserState(store);
       }
       store.subscribe(() => {
-        dispatchStore(store.getState()[USER], store);
+        dispatchStore((store as Store).getState()[USER], store);
       });
       setStoreIntoCache(store);
     }

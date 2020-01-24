@@ -205,22 +205,22 @@ export function getComment(
 export function processHtml(html: string, entry?: string): ProcessedContent {
   if (!html) return { html: "", assets: [] };
 
-  const processedAssets = [];
+  const processedAssets = [] as any[];
 
   const processedHtml = html
     .replace(COMMENT_REGEX, "")
     .replace(SCRIPT_REGEX, (arg1, arg2) => {
       if (!arg1.match(SCRIPT_SRC_REGEX)) {
         processedAssets.push({
-          type: AssetTypeEnum.INLINE,
-          content: arg2
+          type: AssetTypeEnum.INLINE ,
+          content: arg2 
         });
 
         return getComment("script", "inline", AssetCommentEnum.REPLACED);
       } else {
         return arg1.replace(SCRIPT_SRC_REGEX, (_, argSrc2) => {
           const url =
-            argSrc2.indexOf("//") >= 0 ? argSrc2 : getUrl(entry, argSrc2);
+            argSrc2.indexOf("//") >= 0 ? argSrc2 : getUrl(entry as string, argSrc2);
           processedAssets.push({
             type: AssetTypeEnum.EXTERNAL,
             content: url
@@ -236,7 +236,7 @@ export function processHtml(html: string, entry?: string): ProcessedContent {
         return arg1;
       }
 
-      const url = arg2.indexOf("//") >= 0 ? arg2 : getUrl(entry, arg2);
+      const url = arg2.indexOf("//") >= 0 ? arg2 : getUrl(entry as string, arg2);
       return `${getComment(
         "link",
         arg2,
@@ -325,6 +325,7 @@ export function setStaticAttribute(
   if (tag.getAttribute(PREFIX) !== DYNAMIC) {
     tag.setAttribute(PREFIX, STATIC);
   }
+  //@ts-ignore
   tag = null;
 }
 
@@ -334,21 +335,21 @@ export function emptyAssets(): void {
     `style:not([${PREFIX}=${STATIC}])`
   );
   styleList.forEach(style => {
-    style.parentNode.removeChild(style);
+    style.parentNode&&style.parentNode.removeChild(style);
   });
 
   const linkList: NodeListOf<HTMLElement> = document.querySelectorAll(
     `link:not([${PREFIX}=${STATIC}])`
   );
   linkList.forEach(link => {
-    link.parentNode.removeChild(link);
+    link.parentNode && link.parentNode.removeChild(link);
   });
 
   const jsExtraList: NodeListOf<HTMLElement> = document.querySelectorAll(
     `script:not([${PREFIX}=${STATIC}])`
   );
   jsExtraList.forEach(js => {
-    js.parentNode.removeChild(js);
+    js.parentNode && js.parentNode.removeChild(js);
   });
 }
 

@@ -1,22 +1,7 @@
 {
+  "extends": "../../tsconfig.build.json",
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./src",
-    "paths": {
-      "antd": ["components/index.tsx"],
-      "antd/es/*": ["components/*"]
-    },
-    "strictNullChecks": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "jsx": "preserve",
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "noImplicitAny": true,
-    "target": "es6",
-    "lib": ["dom", "es2017"],
-    "skipLibCheck": true
+    "outDir": "src",
   },
-  "exclude": ["node_modules", "src", "tests"],
+  "exclude": ["node_modules", "src", "tests"]
 }
