@@ -1,6 +1,6 @@
 {
   "name": "kerberos-script",
-  "version": "0.1.3.1",
+  "version": "0.1.4",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
@@ -74,5 +74,5 @@
     "react-redux": "^7.1.3",
     "redux": "^4.0.5"
   },
-  "gitHead": "69e69c5bbd30cb8ce80fe3eaadf523825950d0dd"
+  "gitHead": "9d7331f554e1a7da6d3d47580635a012c9c3b68b"
 }
