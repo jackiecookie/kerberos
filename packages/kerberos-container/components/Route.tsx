@@ -9,7 +9,9 @@ interface RouteState {
 }
 
 export default class Route extends Component<RouteProps, RouteState> {
-
+  state: RouteState = {
+    assetsUrls: []
+  };
   private refBase: HTMLDivElement;
 
   async componentDidMount() {
@@ -23,14 +25,14 @@ export default class Route extends Component<RouteProps, RouteState> {
   async renderApp() {
     let { code, url } = this.props;
     let { assetsUrls } = this.state;
-    if (url && url.length > 0 && !assetsUrls) {
+    if (url && url.length > 0 && assetsUrls.length === 0) {
       assetsUrls = url as string[];
     }
-    if (!assetsUrls) {
+    if (assetsUrls.length === 0) {
       let res = await getAssetsUrlByCode(code);
       assetsUrls = res.success ? (res.data as string[]) : assetsUrls;
     }
-    if (assetsUrls) {
+    if (assetsUrls.length > 0) {
       this.setState({ assetsUrls: assetsUrls as string[] });
       try {
         await appendAssets(assetsUrls as string[]);
