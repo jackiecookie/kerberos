@@ -21,3 +21,4 @@ packages/server/containers/*
 dist
 packages/kerberos-script/apps
 packages/kerberos-script/containers
+packages/*/src
