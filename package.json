@@ -23,6 +23,7 @@
     "test": "jest --coverage",
     "codecov": "codecov",
     "build": "lerna run build",
+    "bootstrap": "lerna run bootstrap",
     "pub": "yarn build && lerna publish from-package --yes"
   }
 }
