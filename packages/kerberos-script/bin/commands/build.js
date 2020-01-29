@@ -68,9 +68,6 @@ module.exports = function () {
     let webpackConfig = getWebpackConfigBuild();
     getEntryPackageJson(webpackConfig.entry)
     const compiler = webpack(webpackConfig);
-    compiler.hooks.entryOption.tap('kerberos:build', (context, entry) => {
-        console.log('entry', entry)
-    });
     compiler.hooks.afterEmit.tapAsync('kerberos:build', buildRoute)
     compiler.hooks.done.tap('kerberos:build', (stats) => {
         console.log(
@@ -83,7 +80,6 @@ module.exports = function () {
             }))
 
     })
-
-
+    fs.emptyDirSync(webpackConfig.output.path);
     compiler.run();
 }

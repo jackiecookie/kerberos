@@ -3,7 +3,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const getBaseConfig = require('./webpack.base.js');
 const getEntrys = require("../utils/getEntrys");
-const processEntry = require("./processEntry")
+const processEntry = require("./processEntry");
+const path = require("path");
 
 
 module.exports = () => {
@@ -11,9 +12,16 @@ module.exports = () => {
 
   baseConfig.devtool(false);
 
-  let entries = getEntrys(process.cwd());
+  let cwd = process.cwd();
+  let entries = getEntrys(cwd);
 
   baseConfig.merge({ entry: entries });
+
+  baseConfig.output.filename('[name].[hash:6].js');
+
+  const outputPath = path.resolve(cwd, 'dist');
+
+  baseConfig.output.path(outputPath);
 
   processEntry(baseConfig)
 
@@ -48,33 +56,31 @@ module.exports = () => {
       },
     }]);
 
-  // optimize js chunk
-  // baseConfig.optimization.splitChunks({
-  //   chunks: 'async',
-  //   minSize: 30000,
-  //   maxSize: 0,
-  //   minChunks: 1,
-  //   maxAsyncRequests: 6,
-  //   maxInitialRequests: 4,
-  //   automaticNameDelimiter: '~',
-  //   automaticNameMaxLength: 30,
-  //   cacheGroups: {
-  //     // defaultVendors: {
-  //     //   test: /[\\/]node_modules[\\/]/,
-  //     //   priority: -10
-  //     // },
-  //     // default: {
-  //     //   minChunks: 2,
-  //     //   priority: -20,
-  //     //   reuseExistingChunk: true
-  //     // }
-  //     commons: {
-  //       name: 'commons',
-  //       chunks: 'initial',
-  //       minChunks: 2
-  //     }
-  //   }
-  // }).end();
+  //optimize js chunk
+
+  baseConfig.optimization.runtimeChunk("single");
+  baseConfig.optimization.splitChunks({
+    chunks: 'all',
+    minSize: 0,
+    minChunks: 1,
+    maxAsyncRequests: 6,
+    maxInitialRequests: Infinity,
+    automaticNameDelimiter: '.',
+    automaticNameMaxLength: 30,
+    cacheGroups: {
+      vendor: {
+        test: /[\\/]node_modules[\\/]/,
+        name(module) {
+          // get the name. E.g. node_modules/packageName/not/this/part.js
+          // or node_modules/packageName
+          const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+
+          // npm package names are URL-safe, but some servers don't like @ symbols
+          return `package.${packageName.replace('@', '')}`;
+        }
+      },
+    }
+  }).end();
 
   return baseConfig.toConfig();
 };

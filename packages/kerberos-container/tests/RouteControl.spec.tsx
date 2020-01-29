@@ -17,7 +17,7 @@ describe("RouteControl", () => {
     <RouteControl>
       <Route path="/user"></Route>
       <Route path="/product"></Route>
-      <Route path="/"></Route>
+      <Route path="/" ></Route>
     </RouteControl>
   );
 
@@ -33,9 +33,25 @@ describe("RouteControl", () => {
       "user",
       "http://localhost/user"
     );
-    let test = await waitForElement(() => getByText("/user"));
-    expect(test).not.toBeNull();
+    let user = await waitForElement(() => getByText("/user"));
+    expect(user).not.toBeNull();
+
+    (global as any).window.history.back();
+    let home = await waitForElement(() => getByText("/"));
+    expect(home).not.toBeNull();
     done();
   });
 
+
+  test("return 404 when page not exist", async done => {
+    let { getByText } = render(Component);
+    (global as any).window.history.replaceState(
+      "/404",
+      "404",
+      "http://localhost/404"
+    );
+    let notExistPage = await waitForElement(() => getByText("404"));
+    expect(notExistPage).not.toBeNull();
+    done();
+  });
 });

@@ -1,0 +1,12 @@
+sudo: required
+language: node_js
+node_js:
+  - '8'
+script:
+  - npm run test
+after_success:
+  - npm run codecov"
+cache:
+  directories:
+    - ./node_modules
+    - ./packages/*/node_modules

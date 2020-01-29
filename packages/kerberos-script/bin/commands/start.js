@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const lodashArray = require("lodash/array")
 const cwd = process.cwd();
 let routePath = path.resolve(cwd, "route.json");
 const routeData = require(routePath);
@@ -106,7 +107,13 @@ class Server {
         }
     }
 
-
+    getContainerFiles(req) {
+        let host = req.hostname;
+        if (!hostData[host] || !containerRoute[hostData[host]]) {
+            return null;
+        }
+        return containerRoute[hostData[host]];
+    }
     setupRouteHandle() {
         let self = this;
         // 返回对应app的js文件地址
@@ -115,10 +122,12 @@ class Server {
                 return next();
             }
             let code = req.params['code'];
-            if (appRpute[code]) {
+            let appFiles = appRpute[code];
+            if (appFiles) {
+                let containerFiles = self.getContainerFiles(req) || [];
                 res.json({
                     success: true,
-                    data: appRpute[code]
+                    data: lodashArray.difference(appFiles, containerFiles)
                 })
             } else {
                 return next();
@@ -131,11 +140,10 @@ class Server {
             if (isStaticFile(req.url)) {
                 return next();
             }
-            let host = req.host;
-            if (!hostData[host] || !containerRoute[hostData[host]]) {
+            let containerFiles = self.getContainerFiles(req);
+            if (!containerFiles) {
                 return next();
             }
-            let containerFiles = containerRoute[hostData[host]];
             let responsePage = self.generatedHtml(containerFiles);
             res.send(responsePage);
         })

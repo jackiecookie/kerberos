@@ -26,7 +26,7 @@ function compilePath(path, options) {
 export function matchPath(pathname: string, options: any = {}) {
   if (typeof options === 'string') options = { path: options };
 
-  const { path, exact = false, strict = false, sensitive = false } = options;
+  const { path, exact = true, strict = true, sensitive = true } = options;
 
   const paths = [].concat(path);
 

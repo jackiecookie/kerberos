@@ -280,20 +280,6 @@ export function appendScript(
   });
 }
 
-export async function appendProcessedContent(
-  root: HTMLElement | ShadowRoot,
-  processedContent: ProcessedContent
-) {
-  const { html: processedHtml, assets } = processedContent;
-
-  root.innerHTML = processedHtml;
-
-  // make sure assets loaded in order
-  await Array.prototype.slice.apply(assets).reduce((chain, asset) => {
-    return chain.then(() => appendScript(root, asset));
-  }, Promise.resolve());
-}
-
 export function recordAssets(): void {
   // getElementsByTagName is faster than querySelectorAll
   const styleList: HTMLCollectionOf<HTMLStyleElement> = document.getElementsByTagName(

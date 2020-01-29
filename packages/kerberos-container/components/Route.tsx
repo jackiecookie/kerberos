@@ -3,7 +3,11 @@ import { AppConfig } from "./Container";
 import { getAssetsUrlByCode } from "../api/index";
 import { callAppRegister, appendAssets, emptyAssets } from "kerberos-utils";
 
-export interface RouteProps extends AppConfig {}
+export interface RouteProps extends AppConfig {
+  strict?:boolean,
+  sensitive?:boolean,
+  exact?:boolean
+}
 interface RouteState {
   assetsUrls: string[];
 }
