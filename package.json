@@ -25,5 +25,9 @@
     "build": "lerna run build",
     "bootstrap": "lerna run bootstrap",
     "pub": "yarn build && lerna publish from-package --yes"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "private": true
 }
