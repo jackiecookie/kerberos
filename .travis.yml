@@ -1,4 +1,3 @@
-sudo: required
 language: node_js
 node_js:
   - '8'
@@ -6,9 +5,8 @@ script:
   - npm run test
 
 before_script:
-  - npm run build
   - npm run bootstrap
-  
+
 after_success:
   - npm run codecov"
 cache:
