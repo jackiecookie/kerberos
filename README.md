@@ -68,5 +68,5 @@ import { appRegister } from "kerberos-app";
 appRegister(App)
 ```
 
-basically, you can use any framework on sub-App either react or vue can register to the container but for now, if you want to use global state container,z Kerberos only supports react/redux. 
+basically, you can use any framework on sub-App either react or vue can register to the container but for now, if you want to use global state container, Kerberos only supports react/redux. 
 
