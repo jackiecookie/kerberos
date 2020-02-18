@@ -145,7 +145,6 @@ export async function appendAssets(
   });
 
   if (useShadow) {
-    // make sure css loads after all js have been loaded under shadowRoot
     await appendAllScriptWithOutInline(jsRoot, jsList);
     await appendAllLink(cssRoot, cssList);
   } else {
@@ -188,15 +187,13 @@ export function getUrl(entry: string, relativePath: string): string {
   }
 }
 
-/**
- * If script/link processed by @ice/stark, add comment for it
- */
+
 export function getComment(
   tag: string,
   from: string,
   type: AssetCommentEnum
 ): string {
-  return `<!--${tag} ${from} ${type} by @ice/stark-->`;
+  return `<!--${tag} ${from} ${type} by kerberos-->`;
 }
 
 /**

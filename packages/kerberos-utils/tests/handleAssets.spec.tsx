@@ -94,7 +94,7 @@ const tempHTML =
 describe("getComment", () => {
   test("getComment", () => {
     expect(getComment("script", "inline", AssetCommentEnum.REPLACED)).toBe(
-      "<!--script inline replaced by @ice/stark-->"
+      "<!--script inline replaced by kerberos-->"
     );
 
     expect(
@@ -104,11 +104,11 @@ describe("getComment", () => {
         AssetCommentEnum.REPLACED
       )
     ).toBe(
-      "<!--link https://g.alicdn.com/platform/common/global.css replaced by @ice/stark-->"
+      "<!--link https://g.alicdn.com/platform/common/global.css replaced by kerberos-->"
     );
 
     expect(getComment("link", "/test.css", AssetCommentEnum.PROCESSED)).toBe(
-      "<!--link /test.css processed by @ice/stark-->"
+      "<!--link /test.css processed by kerberos-->"
     );
   });
 });
@@ -132,8 +132,8 @@ describe("processHtml", () => {
       '<link rel="dns-prefetch" href="//img.alicdn.com" />'
     );
 
-    expect(html).toContain("<!--link ./test.css processed by @ice/stark-->");
-    expect(html).toContain("<!--link /index.css processed by @ice/stark-->");
+    expect(html).toContain("<!--link ./test.css processed by kerberos-->");
+    expect(html).toContain("<!--link /index.css processed by kerberos-->");
     expect(html).not.toContain('href="/index.css"');
     expect(html).not.toContain('href="index.css"');
 
