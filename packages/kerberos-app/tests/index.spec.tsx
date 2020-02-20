@@ -21,6 +21,12 @@ describe("test appRegister", () => {
   });
    //@ts-ignore
   ReactDOM.render = jest.fn();
+  beforeEach(function(){
+    (ReactDOM.render as jest.Mock<any, any>).mockClear()
+  })
+
+ 
+
   test("render component in root provide when not in container", () => {
     (isInContainer as jest.Mock).mockReturnValueOnce(false);
     // not in container
@@ -37,9 +43,9 @@ describe("test appRegister", () => {
     expect(appLifeCycleAppRegister).toBeCalledTimes(1);
     let callback = (appLifeCycleAppRegister as jest.Mock).mock.calls[0][0];
     let containerRootId = "containerRootId";
-    // call callback manual
-    callback({ detail: { data: containerRootId } });
-    expect(ReactDOM.render).toBeCalledTimes(2);
+    // call callback manually
+    callback(containerRootId);
+    expect(ReactDOM.render).toBeCalledTimes(1);
     expect(ReactDOM.render).toBeCalledWith(Noop(), containerRootId);
   });
 });

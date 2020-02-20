@@ -4,9 +4,9 @@ import { getAssetsUrlByCode } from "../api/index";
 import { callAppRegister, appendAssets, emptyAssets } from "kerberos-utils";
 
 export interface RouteProps extends AppConfig {
-  strict?:boolean,
-  sensitive?:boolean,
-  exact?:boolean
+  strict?: boolean;
+  sensitive?: boolean;
+  exact?: boolean;
 }
 interface RouteState {
   assetsUrls: string[];
@@ -40,7 +40,10 @@ export default class Route extends Component<RouteProps, RouteState> {
       this.setState({ assetsUrls: assetsUrls as string[] });
       try {
         await appendAssets(assetsUrls as string[]);
-        callAppRegister(this.refBase);
+        callAppRegister({
+          root: this.refBase,
+          interceptor: null
+        });
       } catch (err) {
         console.error(err);
       }

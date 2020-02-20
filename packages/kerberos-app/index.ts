@@ -1,5 +1,6 @@
 import { Component, ReactElement } from "react";
 import ReactDOM from "react-dom";
+import IAdapter from "kerberos-utils/types/IAdapter";
 import {
   isInContainer,
   handelReduxStore,
@@ -8,15 +9,15 @@ import {
 
 function appRegister(
   app: Component | ReactElement | any,
-  rootId: string = "subapp"
+  rootId: string = "subapp",
+  options:{ adapter: null | IAdapter } = null
 ) {
   if (isInContainer()) {
-    appLifeCycleAppRegister(function(evt: CustomEvent) {
+    appLifeCycleAppRegister(function(root: Element) {
       let appInstance = app();
-      let root = evt.detail.data;
       handelReduxStore(appInstance, true);
       ReactDOM.render(appInstance, root);
-    });
+    },options);
   } else {
     ReactDOM.render(app(), document.getElementById(rootId));
   }
