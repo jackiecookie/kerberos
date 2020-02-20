@@ -24,7 +24,7 @@ export default class ReduxAdapter extends BaseAdapter implements IAdapter {
     this.store[interceptorSymbol] = interceptor;
   }
 
-  static middleware = store => {
+  static middleware = () => {
     return function(next) {
       return function(action) {
         let storeIntercep =

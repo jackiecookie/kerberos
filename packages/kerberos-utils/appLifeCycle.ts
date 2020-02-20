@@ -7,21 +7,21 @@ export enum AppLifeCycleEnum {
 }
 
 export function appRegister(
-  render: (root: Element)=>void,
-  options: { adapter: null | IAdapter } = null
+  render: (root: Element) => void,
+  options: null | { adapter: IAdapter } = null
 ) {
   window.addEventListener(AppLifeCycleEnum.AppRegister, function(
     evt: CustomEvent
   ) {
     render(evt.detail.data.root);
-     // set global state management adapter.
-    if (options.adapter) {
+    // set global state management adapter.
+    if (options && options.adapter) {
       interceptor(options.adapter);
     }
   });
 }
 
-export function callAppRegister(arg: {root:Element}) {
+export function callAppRegister(arg: { root: Element }) {
   let event = new CustomEvent(AppLifeCycleEnum.AppRegister, {
     detail: {
       data: arg

@@ -41,8 +41,7 @@ export default class Route extends Component<RouteProps, RouteState> {
       try {
         await appendAssets(assetsUrls as string[]);
         callAppRegister({
-          root: this.refBase,
-          interceptor: null
+          root: this.refBase
         });
       } catch (err) {
         console.error(err);

@@ -10,7 +10,7 @@ import {
 function appRegister(
   app: Component | ReactElement | any,
   rootId: string = "subapp",
-  options:{ adapter: null | IAdapter } = null
+  options:null |{ adapter: IAdapter } = null
 ) {
   if (isInContainer()) {
     appLifeCycleAppRegister(function(root: Element) {
