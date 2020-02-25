@@ -9,8 +9,9 @@ const path = require("path");
 
 module.exports = () => {
   const baseConfig = getBaseConfig('production');
+  baseConfig.mode("development")
 
-  baseConfig.devtool(false);
+  baseConfig.devtool("inline-source-map");
 
   let cwd = process.cwd();
   let entries = getEntrys(cwd);
@@ -26,37 +27,37 @@ module.exports = () => {
   processEntry(baseConfig)
 
   // uglify js file
-  baseConfig.optimization
-    .minimizer('UglifyJsPlugin')
-    .use(UglifyJsPlugin, [{
-      sourceMap: false,
-      cache: true,
-      parallel: true,
-      uglifyOptions: {
-        compress: {
-          unused: false,
-        },
-        output: {
-          ascii_only: true,
-          comments: 'some',
-          beautify: false,
-        },
-        mangle: true,
-      },
-    }]);
+  // baseConfig.optimization
+  //   .minimizer('UglifyJsPlugin')
+  //   .use(UglifyJsPlugin, [{
+  //     sourceMap: false,
+  //     cache: true,
+  //     parallel: true,
+  //     uglifyOptions: {
+  //       compress: {
+  //         unused: false,
+  //       },
+  //       output: {
+  //         ascii_only: true,
+  //         comments: 'some',
+  //         beautify: false,
+  //       },
+  //       mangle: true,
+  //     },
+  //   }]);
 
-  // optimize css file
-  baseConfig.optimization
-    .minimizer('OptimizeCSSAssetsPlugin')
-    .use(OptimizeCSSAssetsPlugin, [{
-      cssProcessorOptions: {
-        cssDeclarationSorter: false,
-        reduceIdents: false,
-        parser: require('postcss-safe-parser'),
-      },
-    }]);
+  // // optimize css file
+  // baseConfig.optimization
+  //   .minimizer('OptimizeCSSAssetsPlugin')
+  //   .use(OptimizeCSSAssetsPlugin, [{
+  //     cssProcessorOptions: {
+  //       cssDeclarationSorter: false,
+  //       reduceIdents: false,
+  //       parser: require('postcss-safe-parser'),
+  //     },
+  //   }]);
 
-  //optimize js chunk
+  // //optimize js chunk
 
   baseConfig.optimization.runtimeChunk("single");
   baseConfig.optimization.splitChunks({
