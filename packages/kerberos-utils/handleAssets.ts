@@ -1,5 +1,7 @@
 import { getCache } from "./cache";
 import { error } from "./message";
+import {free,hijack} from './hijacker'
+import Sandbox from "./sandbox";
 
 const PREFIX = "kerberos";
 const DYNAMIC = "dynamic";
@@ -125,7 +127,8 @@ export function appendAllScriptWithOutInline(
 
 export async function appendAssets(
   assetsList: string[],
-  useShadow: boolean = true
+  useShadow: boolean = true,
+  sandbox: Sandbox|null = null
 ) {
   const jsRoot: HTMLElement = document.getElementsByTagName("head")[0];
   const cssRoot: HTMLElement | ShadowRoot = useShadow
@@ -144,6 +147,10 @@ export async function appendAssets(
     }
   });
 
+  if (sandbox) {
+    hijack(jsRoot,sandbox);
+  }
+
   if (useShadow) {
     await appendAllScriptWithOutInline(jsRoot, jsList);
     await appendAllLink(cssRoot, cssList);
@@ -151,6 +158,7 @@ export async function appendAssets(
     await appendAllLink(cssRoot, cssList);
     await appendAllScriptWithOutInline(jsRoot, jsList);
   }
+  free(jsRoot);
 }
 
 export function parseUrl(entry: string): ParsedConfig {
@@ -187,7 +195,6 @@ export function getUrl(entry: string, relativePath: string): string {
   }
 }
 
-
 export function getComment(
   tag: string,
   from: string,
@@ -209,15 +216,17 @@ export function processHtml(html: string, entry?: string): ProcessedContent {
     .replace(SCRIPT_REGEX, (arg1, arg2) => {
       if (!arg1.match(SCRIPT_SRC_REGEX)) {
         processedAssets.push({
-          type: AssetTypeEnum.INLINE ,
-          content: arg2 
+          type: AssetTypeEnum.INLINE,
+          content: arg2
         });
 
         return getComment("script", "inline", AssetCommentEnum.REPLACED);
       } else {
         return arg1.replace(SCRIPT_SRC_REGEX, (_, argSrc2) => {
           const url =
-            argSrc2.indexOf("//") >= 0 ? argSrc2 : getUrl(entry as string, argSrc2);
+            argSrc2.indexOf("//") >= 0
+              ? argSrc2
+              : getUrl(entry as string, argSrc2);
           processedAssets.push({
             type: AssetTypeEnum.EXTERNAL,
             content: url
@@ -233,7 +242,8 @@ export function processHtml(html: string, entry?: string): ProcessedContent {
         return arg1;
       }
 
-      const url = arg2.indexOf("//") >= 0 ? arg2 : getUrl(entry as string, arg2);
+      const url =
+        arg2.indexOf("//") >= 0 ? arg2 : getUrl(entry as string, arg2);
       return `${getComment(
         "link",
         arg2,
@@ -318,7 +328,7 @@ export function emptyAssets(): void {
     `style:not([${PREFIX}=${STATIC}])`
   );
   styleList.forEach(style => {
-    style.parentNode&&style.parentNode.removeChild(style);
+    style.parentNode && style.parentNode.removeChild(style);
   });
 
   const linkList: NodeListOf<HTMLElement> = document.querySelectorAll(

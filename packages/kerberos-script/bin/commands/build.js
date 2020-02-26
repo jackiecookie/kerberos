@@ -22,10 +22,11 @@ function buildRoute(compilation, callback) {
         let allFiles = entrypoint.getFiles();
         let isApp = entryIsApp(name);
         let routeName = name.split('-')[1];
+        let jsFile = (name)=>path.extname(name)==='.js';
         if (isApp) {
-            appRoute[routeName] = allFiles;
+            appRoute[routeName] = allFiles.filter(jsFile);
         } else {
-            containerRoute[routeName] = allFiles;
+            containerRoute[routeName] = allFiles.filter(jsFile);;
             let host = hostOriginData[name];
             if (host) {
                 hostData[host] = routeName;

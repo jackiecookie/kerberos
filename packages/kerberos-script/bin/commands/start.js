@@ -11,12 +11,15 @@ const hostData = routeData.host;
 const JS = '_JS_FILE';
 const CSS = '_CSS_FILE';
 const ICO = '_ICO_FILE';
+const JSMAP = '_JSMAP_FILE';
 
 function isStaticFile(url) {
     let extname = path.extname(url);
     let type = '';
     if (extname === '.js') {
         type = JS;
+    } else if (extname === '.map') {
+        type = JSMAP;
     } else if (extname === '.css') {
         type = CSS;
     } else if (extname === '.ico') {
@@ -26,7 +29,6 @@ function isStaticFile(url) {
 }
 
 function htmlTagObjectToString(tagDefinitions) {
-
     return tagDefinitions.reduce((res, tagDefinition) => {
         const attributes = Object.keys(tagDefinition.attributes || {})
             .filter(function (attributeName) {
@@ -43,9 +45,6 @@ function htmlTagObjectToString(tagDefinitions) {
             (tagDefinition.voidTag ? '' : '</' + tagDefinition.tagName + '>');
         return res;
     }, '')
-
-
-
 }
 
 

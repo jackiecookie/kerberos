@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { AppConfig } from "./Container";
 import { getAssetsUrlByCode } from "../api/index";
-import { callAppRegister, appendAssets, emptyAssets } from "kerberos-utils";
+import {
+  callAppRegister,
+  appendAssets,
+  emptyAssets,
+  Sandbox
+} from "kerberos-utils";
 
 export interface RouteProps extends AppConfig {
   strict?: boolean;
@@ -17,13 +22,17 @@ export default class Route extends Component<RouteProps, RouteState> {
     assetsUrls: []
   };
   private refBase: HTMLDivElement;
+  sanbox: Sandbox|null;
 
   async componentDidMount() {
+    this.sanbox = new Sandbox();
     await this.renderApp();
   }
 
   componentWillUnmount() {
     emptyAssets();
+    this.sanbox&&this.sanbox.dispose();
+    this.sanbox = null;
   }
 
   async renderApp() {
@@ -39,7 +48,7 @@ export default class Route extends Component<RouteProps, RouteState> {
     if (assetsUrls.length > 0) {
       this.setState({ assetsUrls: assetsUrls as string[] });
       try {
-        await appendAssets(assetsUrls as string[]);
+        await appendAssets(assetsUrls as string[], true, this.sanbox);
         callAppRegister({
           root: this.refBase
         });

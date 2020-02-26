@@ -42,7 +42,7 @@ export default class Container extends Component<
     this.setState({
       apps: [
         {
-          path: "/",
+          path: "/user",
           title: "首页",
           code: "user"
         },
