@@ -19,7 +19,7 @@
     "devDependencies": {
         "@testing-library/react": "^9.4.0",
         "@types/jsdom": "^12.2.4",
-        "jsdom": "^16.0.1"
+        "jsdom": "^16.5.0"
     },
     "scripts": {
         "test": "jest",
